@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sczheng.mapper.MyOrderMapper">
+
+    <update id="update" parameterType="com.sczheng.pojo.MyOrder">
+        update myOrder
+        <set>
+            <if test="userId!=null and userId!=''">
+                user_id=#{userId},
+            </if>
+            <if test="productId!=null and productId!=''">
+                product_id=#{productId},
+            </if>
+            <if test="totalAmount!=null and totalAmount!=''">
+                total_amount=#{totalAmount},
+            </if>
+            <if test="orderDate!=null and orderDate!=''">
+                order_date=#{orderDate},
+            </if>
+            <if test="finish!=null and finish!=''">
+                finish=#{finish},
+            </if>
+        </set>
+        where id=#{id}
+
+
+
+    </update>
+
+</mapper>

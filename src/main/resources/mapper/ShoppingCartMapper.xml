@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sczheng.mapper.ShoppingCartMapper">
+
+<!--    <select id="getCartById" parameterType="list" resultType="com.sczheng.pojo.ShoppingCart">-->
+<!--        select * from shoppingCart-->
+<!--        where-->
+<!--        id in-->
+<!--        <foreach collection="list" item="id" open="(" close=")" separator=",">-->
+<!--            #{id}-->
+<!--        </foreach>-->
+<!--    </select>-->
+
+    <delete id="delete" parameterType="list">
+        delete from shoppingCart
+        where
+        id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="update" parameterType="com.sczheng.pojo.ShoppingCart">
+        update shoppingCart
+        <set>
+            <if test="userId!=null and userId!=''">
+                user_id=#{userId},
+            </if>
+
+            <if test="productId!=null and productId!=''">
+                product_id=#{productId},
+            </if>
+            <if test="num!=null and num!=''">
+                num=#{num},
+            </if>
+            <if test="totalprice!=null and totalprice!=''">
+                totalprice=#{totalprice},
+            </if>
+
+        </set>
+        where id=#{id}
+
+
+
+    </update>
+
+</mapper>
