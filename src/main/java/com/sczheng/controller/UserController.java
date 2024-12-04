@@ -73,6 +73,7 @@ public class UserController {
                 return Result.error("未登录或token已过期");
             }
 
+
             String token = authHeader.substring(7);
             log.info("Token: {}", token);
 
